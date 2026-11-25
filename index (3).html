@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snehal P Pawar · Growth Marketing</title>
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --bg-card:#12121a;
+    --border:#232330;
+    --purple:#7c5cff;
+    --purple-dim:#5a45b0;
+    --text:#e8e8ec;
+    --text-dim:#9494a3;
+    --mono:'IBM Plex Mono','Courier New',monospace;
+    --sans:'Inter',-apple-system,'Segoe UI',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;}
+  a{color:var(--purple);text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+
+  header{position:sticky;top:0;z-index:10;background:rgba(10,10,15,0.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;max-width:1100px;margin:0 auto;}
+  .brand{font-family:var(--mono);font-size:15px;letter-spacing:0.5px;}
+  .brand b{color:var(--text);}
+  .brand span{color:var(--text-dim);}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--text-dim);}
+  .nav-links a{color:var(--text-dim);}
+  .nav-links a:hover{color:var(--text);}
+  @media(max-width:800px){.nav-links{display:none;}}
+
+  .hero{padding:100px 0 70px;}
+  .eyebrow{font-family:var(--mono);font-size:13px;color:var(--purple);margin-bottom:20px;letter-spacing:0.5px;}
+  h1{font-size:46px;line-height:1.18;font-weight:700;letter-spacing:-0.5px;max-width:820px;}
+  h1 .accent{color:var(--purple);}
+  .hero p.lede{margin-top:28px;max-width:640px;color:var(--text-dim);font-size:18px;}
+  .contact-line{margin-top:36px;font-size:14px;color:var(--text-dim);display:flex;flex-wrap:wrap;gap:6px 18px;}
+  @media(max-width:700px){h1{font-size:32px;}}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:50px 0 20px;}
+  .stat{padding:24px;border-right:1px solid var(--border);background:var(--bg-card);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-size:26px;font-weight:700;color:var(--purple);}
+  .stat .cap{font-size:12.5px;color:var(--text-dim);margin-top:4px;}
+  @media(max-width:700px){.stats{grid-template-columns:1fr;}.stat{border-right:none;border-bottom:1px solid var(--border);}.stat:last-child{border-bottom:none;}}
+
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+  .tag{font-size:13px;color:var(--text-dim);border:1px solid var(--border);border-radius:20px;padding:6px 14px;}
+
+  section{padding:70px 0;border-top:1px solid var(--border);}
+  .section-title{font-size:32px;font-weight:700;max-width:700px;letter-spacing:-0.3px;}
+  .section-title .accent{color:var(--purple);}
+  .section-sub{color:var(--text-dim);max-width:640px;margin-top:16px;font-size:16px;}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px;}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr);}
+  @media(max-width:800px){.grid{grid-template-columns:1fr;}}
+  .card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:24px;}
+  .card h3{font-size:17px;color:var(--purple);margin-bottom:10px;}
+  .card p{color:var(--text-dim);font-size:14.5px;}
+  .card .taglist{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-family:var(--mono);font-size:12px;color:var(--text-dim);}
+  .card .taglist div{margin-bottom:4px;}
+
+  .scope{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+  @media(max-width:700px){.scope{grid-template-columns:1fr;}}
+  .scope .label{font-family:var(--mono);font-size:12px;color:var(--purple);margin-bottom:10px;}
+  .scope p{color:var(--text-dim);font-size:14.5px;}
+
+  .record-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;}
+  @media(max-width:900px){.record-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.record-grid{grid-template-columns:1fr;}}
+  .record-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:20px;}
+  .badge{font-family:var(--mono);font-size:11px;color:var(--purple);border:1px solid var(--purple-dim);border-radius:5px;padding:3px 8px;display:inline-block;margin-bottom:14px;}
+  .record-card h3{font-size:16px;margin-bottom:10px;}
+  .record-card p{color:var(--text-dim);font-size:13.5px;}
+  .record-card .result{color:var(--purple);font-weight:600;}
+
+  .problem{display:grid;grid-template-columns:56px 1fr;gap:24px;padding:28px 0;border-top:1px solid var(--border);}
+  .problem:first-of-type{border-top:none;}
+  .problem .idx{font-family:var(--mono);color:var(--purple);font-size:15px;padding-top:3px;}
+  .problem h3{font-size:19px;margin-bottom:10px;}
+  .problem p{color:var(--text-dim);font-size:15px;}
+  .problem .result{margin-top:12px;color:var(--purple);font-size:14px;font-weight:600;}
+
+  .instrument{display:grid;grid-template-columns:56px 1fr;gap:24px;padding:36px 0;border-top:1px solid var(--border);}
+  .instrument:first-of-type{border-top:none;}
+  .instrument .idx{font-family:var(--mono);color:var(--purple);font-size:15px;padding-top:3px;}
+  .instrument h3{font-size:19px;margin-bottom:10px;}
+  .instrument p{color:var(--text-dim);font-size:15px;margin-bottom:20px;max-width:640px;}
+  .shot-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .shot-row.wide{grid-template-columns:1fr;}
+  .shot-row + .shot-row{margin-top:16px;}
+  .shot-wrap{margin:0;}
+  figcaption{font-family:var(--mono);font-size:12.5px;color:var(--text-dim);margin-top:10px;line-height:1.5;}
+  @media(max-width:700px){.shot-row{grid-template-columns:1fr;}}
+  .shot{border:1px dashed var(--border);border-radius:8px;padding:40px 16px;text-align:center;background:var(--bg-card);}
+  .shot span{font-size:13px;color:var(--text-dim);}
+  .shot img{width:100%;display:block;border-radius:8px;}
+  .shot.has-img{padding:0;border:1px solid var(--border);overflow:hidden;}
+  .shot.has-img span{display:none;}
+
+  .testimonial{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:44px;margin-top:40px;}
+  .testimonial .quote{font-size:22px;font-weight:600;line-height:1.4;}
+  .testimonial .context{margin-top:20px;color:var(--text-dim);font-size:15px;}
+  .testimonial .attribution{margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--text-dim);}
+
+  footer{border-top:1px solid var(--border);padding:40px 0;color:var(--text-dim);font-size:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;}
+
+  .fill{color:#ff9e64;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="brand"><b>SNEHAL P PAWAR</b> <span>· growth marketing</span></div>
+    <div class="nav-links">
+      <a href="#problems">Problems Solved</a>
+      <a href="#analytical">Analytical Depth</a>
+      <a href="#instrument">Instrument Panel</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;padding-top:80px;">
+    <div class="eyebrow">GROWTH MARKETING · RETENTION & LIFECYCLE STRATEGY</div>
+    <h1>Buying the click is easy. <span class="accent">Building the loop that keeps them coming back</span> is the job.</h1>
+    <p class="lede">I run full-funnel growth (acquisition, retention, and lifecycle) for D2C, quick commerce, and EdTech brands across India, UAE, and Qatar. CAC/LTV modelling, CRM-led retention engines, and attribution that still works once a platform's pixel doesn't.</p>
+    <div class="contact-line">
+      <span>Mumbai, India</span>
+      <span>·</span>
+      <span>snehal.ppawar5@gmail.com</span>
+      <span>·</span>
+      <span>+91 9987495615</span>
+      <span>·</span>
+      <a href="https://www.linkedin.com/in/snehal-pawar-performance-marketer/" target="_blank">linkedin.com/in/snehal-pawar-performance-marketer</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">₹90L–1Cr+</div><div class="cap">MONTHLY BUDGETS MANAGED</div></div>
+      <div class="stat"><div class="num">7+</div><div class="cap">YEARS IN GROWTH MARKETING</div></div>
+      <div class="stat"><div class="num">3</div><div class="cap">MARKETS: INDIA · UAE · QATAR</div></div>
+    </div>
+    <div class="tags">
+      <span class="tag">D2C</span><span class="tag">Quick Commerce</span><span class="tag">Apparel</span>
+      <span class="tag">Automotive Accessories</span><span class="tag">Gifting & Experiences</span>
+      <span class="tag">Education</span><span class="tag">Travel & Tourism</span><span class="tag">Watches & Retail</span>
+      <span class="tag">Beauty & Wellness</span><span class="tag">SaaS</span><span class="tag">Hospitality</span>
+      <span class="tag">Real Estate</span><span class="tag">B2B Manufacturing</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Growth is the acquisition number and everything that happens after it.</h2>
+    <p class="section-sub">The brands I work with need someone who owns the CAC/LTV model, the retention stack, and the attribution underneath it, not just the media plan sitting on top.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Growth & CAC/LTV Modelling</h3>
+        <p>Build growth loops and CAC, LTV, MER, and payback-period models to decide where acquisition spend should go and which loops are actually worth scaling.</p>
+      </div>
+      <div class="card">
+        <h3>Retention & Lifecycle Engines</h3>
+        <p>Design CRM-led retention stacks (CleverTap, Klaviyo, WhatsApp, Manychat) and lifecycle flows (welcome, winback, post-purchase, seasonal) that turn one-time buyers into repeat revenue.</p>
+      </div>
+      <div class="card">
+        <h3>Attribution & Measurement</h3>
+        <p>Move accounts from click-based to conversion-based attribution, and build first-party data and cookieless tracking (GTM, CAPI, server-side) so measurement holds up post-iOS14.</p>
+      </div>
+      <div class="card">
+        <h3>Community & Influencer-Led Growth</h3>
+        <p>Turn large organic followings into cost-efficient paid reach through influencer-led creative and community amplification, rather than running the two as separate tracks.</p>
+      </div>
+      <div class="card">
+        <h3>Creative Strategy for Growth</h3>
+        <p>Brief UGC, hooks, and ad concepts mapped to funnel stage and audience psychology, so creative and performance data stay connected.</p>
+      </div>
+      <div class="card">
+        <h3>Automated Reporting Infrastructure</h3>
+        <p>Build real-time growth dashboards using BigQuery, Adveronix, and Sheets, so clients see performance without waiting on a manual pull.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="scope">
+      <div>
+        <div class="label">WHO I REPORT TO</div>
+        <p>Agency and client-side leadership across D2C, quick commerce, and EdTech brands running six- to seven-figure monthly budgets.</p>
+      </div>
+      <div>
+        <div class="label">WHAT I OWN</div>
+        <p>Full-funnel growth strategy (acquisition, retention, and lifecycle) for brands running ₹90L–1Cr+ in monthly spend, from the CAC/LTV model up through the CRM retention stack.</p>
+      </div>
+      <div>
+        <div class="label">HOW I OPERATE</div>
+        <p>Own the growth model and reporting infrastructure myself, while briefing creative and coordinating retention tooling end to end.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Recent wins, four different growth problems.</h2>
+    <p class="section-sub">A snapshot of the accounts worked on most recently, and what each one actually needed.</p>
+    <div class="record-grid">
+      <div class="record-card">
+        <span class="badge">SCALED</span>
+        <h3>Quick-Commerce Brand (UAE)</h3>
+        <p>Built a CRM-led retention engine (CleverTap + WhatsApp), timed to seasonal demand spikes.</p>
+        <p class="result">→ 69% open rates; returning-customer revenue grew to 45% of total</p>
+      </div>
+      <div class="record-card">
+        <span class="badge">OPTIMIZED</span>
+        <h3>Apparel Brand (India)</h3>
+        <p>Separated retention and acquisition spend to eliminate audience overlap and budget waste.</p>
+        <p class="result">→ nCAC reduced 48% ($150 → $78)</p>
+      </div>
+      <div class="record-card">
+        <span class="badge">SCALED</span>
+        <h3>Gifting & Experiences Brand (Dubai)</h3>
+        <p>Shifted attribution from click-based to conversion-based to uncover the true buyer segments.</p>
+        <p class="result">→ ROAS doubled, 3x to 6.5x, while reducing nCAC</p>
+      </div>
+      <div class="record-card">
+        <span class="badge">SCALED</span>
+        <h3>Automotive Accessories Brand (India)</h3>
+        <p>Amplified an 800K-strong organic community through influencer-led creative and a high-AOV product focus.</p>
+        <p class="result">→ ROAS grew 3x to 7x</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Other client wins.</h2>
+    <div class="grid cols-3" style="margin-top:32px;">
+      <div class="card"><h3>Apparel E-commerce</h3><p>Scaled daily spend 3.2x (₹5K → ₹16K) while holding 3x ROAS, through phased budget expansion and a UGC creative flywheel.</p></div>
+      <div class="card"><h3>Travel & Tourism</h3><p>Drove 600+ international bookings in new markets by shifting the brand narrative from price/itinerary to experience-led video.</p></div>
+      <div class="card"><h3>Higher Education</h3><p>Generated 5,000+ programme applications by rebuilding the lead-gen funnel and creative hierarchy for a high-intent audience.</p></div>
+      <div class="card"><h3>Watches & Retail (Qatar)</h3><p>Unlocked blended online + offline ROAS visibility using WhatsApp ads and offline conversion tracking, in a market with no Shopping ads availability.</p></div>
+      <div class="card"><h3>Hospitality & Real Estate</h3><p>Delivered growth and paid media strategy for premium hospitality and real estate brands as an independent consultant.</p></div>
+      <div class="card"><h3>B2B Manufacturing</h3><p>Led an influencer programme that lifted retail conversion 23%, and ran seasonal demand-gen campaigns that grew B2B sales 35%.</p></div>
+    </div>
+  </section>
+
+  <section id="problems">
+    <h2 class="section-title">Not campaign fixes. Growth-model diagnoses.</h2>
+    <p class="section-sub">The pattern across every account: a growth number that's stalled or leaking, and the job is finding out why before touching the media.</p>
+
+    <div class="problem">
+      <div class="idx">01</div>
+      <div>
+        <h3>Making retention pay for itself, not just acquisition</h3>
+        <p>Retention spend and acquisition spend competing for the same audience quietly wastes budget without anyone noticing. Separated the two and removed the audience overlap.</p>
+        <p class="result">→ nCAC reduced 48% for an apparel brand</p>
+      </div>
+    </div>
+    <div class="problem">
+      <div class="idx">02</div>
+      <div>
+        <h3>Proving growth in a market with no clean attribution path</h3>
+        <p>No Shopping ads, no clean on-site conversion trail. Built WhatsApp-ads and offline-conversion tracking to see the full blended picture instead of a partial one.</p>
+        <p class="result">→ Unlocked blended online + offline ROAS visibility for a watches & retail brand in Qatar</p>
+      </div>
+    </div>
+    <div class="problem">
+      <div class="idx">03</div>
+      <div>
+        <h3>Turning an organic community into paid growth, not just vanity reach</h3>
+        <p>An 800K-follower organic base doesn't automatically translate into efficient paid growth. Built influencer-led creative and demand activation structured around it.</p>
+        <p class="result">→ ROAS grew 3x to 7x for an automotive accessories brand</p>
+      </div>
+    </div>
+    <div class="problem">
+      <div class="idx">04</div>
+      <div>
+        <h3>Reading attribution by what actually converts, not what's clicked</h3>
+        <p>Click-based attribution was hiding the real buyer segments underneath. Rebuilt the model around conversion-based attribution instead.</p>
+        <p class="result">→ ROAS doubled for a gifting & experiences brand while nCAC dropped</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="analytical">
+    <div class="eyebrow">// ANALYTICAL DEPTH</div>
+    <h2 class="section-title">The kind of thinking these problems actually required.</h2>
+    <p class="section-sub">Every growth number above got fixed with a different lens, not one template applied everywhere.</p>
+    <div class="grid cols-3">
+      <div class="card">
+        <h3>Growth Loop & CAC/LTV Modelling</h3>
+        <p>CAC, LTV, MER, and payback-period models used to decide where acquisition spend should go and which loops are actually worth scaling.</p>
+        <div class="taglist"><div>Cohort analysis</div><div>Payback-period modelling</div></div>
+      </div>
+      <div class="card">
+        <h3>Retention & Lifecycle Architecture</h3>
+        <p>CRM-led retention stacks and lifecycle flows built to compound repeat revenue rather than treat retention as an afterthought.</p>
+        <div class="taglist"><div>CleverTap / Klaviyo</div><div>WhatsApp & Manychat flows</div></div>
+      </div>
+      <div class="card">
+        <h3>Attribution Modelling</h3>
+        <p>Comparing click-based, conversion-based, and multi-touch attribution to find where a channel is actually creating demand versus just claiming credit.</p>
+        <div class="taglist"><div>DDA / MTA</div><div>GA4 & BigQuery</div></div>
+      </div>
+      <div class="card">
+        <h3>First-Party & Cookieless Tracking</h3>
+        <p>Server-side tracking and first-party data collection built to keep measurement reliable post-iOS14, without depending on a platform's own pixel.</p>
+        <div class="taglist"><div>GTM / CAPI</div><div>Server-side tracking</div></div>
+      </div>
+      <div class="card">
+        <h3>Community & Influencer Amplification</h3>
+        <p>Turning existing organic reach into structured, cost-efficient paid growth rather than running acquisition and community as separate tracks.</p>
+        <div class="taglist"><div>Influencer-led creative</div><div>Community-led demand gen</div></div>
+      </div>
+      <div class="card">
+        <h3>Automated Growth Reporting</h3>
+        <p>Real-time dashboards built directly off BigQuery and ad-platform data, so performance is visible without a manual pull every time someone asks.</p>
+        <div class="taglist"><div>BigQuery / Adveronix</div><div>Looker Studio</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="instrument">
+    <div class="eyebrow">// INSTRUMENT PANEL</div>
+    <h2 class="section-title">The reporting layer behind every growth decision.</h2>
+    <p class="section-sub">Each ad platform reports its own version of events. These are the sheets, dashboards and automations used to line them up against the backend, spot trends early and act before the month closes.</p>
+
+    <div class="instrument">
+      <div class="idx">01</div>
+      <div>
+        <h3 class="">One master sheet, every stream, one daily row</h3>
+        <p class="">Every metric from each ad platform and the backend, lined up day by day with colour scales, so a drift in CPA, ROAS, new vs. returning customers or channel mix shows up while there is still time to act on it.</p>
+        <div class="shot-row wide">
+          <figure class="shot-wrap"><div class="shot"><img src="images/consolidated-new-vs-returning.jpeg" alt="Consolidated new vs returning customer sheet" onload="this.parentNode.classList.add('has-img')" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='consolidated-new-vs-returning.jpeg'}else{this.remove()}"><span>[Add screenshot here]</span></div><figcaption>New vs. returning customers, CAC, ROI and AOV, with revenue split across web, iOS and Android.</figcaption></figure>
+        </div>
+        <div class="shot-row">
+          <figure class="shot-wrap"><div class="shot"><img src="images/paid-organic-direct.jpeg" alt="Paid organic direct revenue split" onload="this.parentNode.classList.add('has-img')" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='paid-organic-direct.jpeg'}else{this.remove()}"><span>[Add screenshot here]</span></div><figcaption>Revenue split into paid, organic and direct, with new vs. returning customer share by channel.</figcaption></figure><figure class="shot-wrap"><div class="shot"><img src="images/meta-master-sheet.jpeg" alt="Meta daily master sheet" onload="this.parentNode.classList.add('has-img')" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='meta-master-sheet.jpeg'}else{this.remove()}"><span>[Add screenshot here]</span></div><figcaption>Meta daily metrics, from spend and ROAS through to reach, CPM, CTR and funnel steps.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="instrument">
+      <div class="idx">02</div>
+      <div>
+        <h3 class="">A live dashboard fed by every ad platform</h3>
+        <p class="">Ad platform data pulled into one dashboard built with Claude, with smoothing and scale controls so spend, traffic, transactions and revenue can be read against each other over a full year.</p>
+        <div class="shot-row wide">
+          <figure class="shot-wrap"><div class="shot"><img src="images/growth-dashboard.png" alt="Growth dashboard" onload="this.parentNode.classList.add('has-img')" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='growth-dashboard.png'}else{this.remove()}"><span>[Add screenshot here]</span></div><figcaption>Spend, active users, transactions and revenue on one chart, with raw, 7-day and 14-day views.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="instrument">
+      <div class="idx">03</div>
+      <div>
+        <h3 class="">Funnel conversion, web vs. DDA, side by side</h3>
+        <p class="">Weekly step-by-step conversion rates shown for web analytics and for DDA together. The two rarely agree, so both are read before a decision is made on what the funnel is doing.</p>
+        <div class="shot-row wide">
+          <figure class="shot-wrap"><div class="shot"><img src="images/web-vs-dda-funnel.png" alt="Weekly funnel conversion web vs DDA" onload="this.parentNode.classList.add('has-img')" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='web-vs-dda-funnel.png'}else{this.remove()}"><span>[Add screenshot here]</span></div><figcaption>Weekly conversion at each funnel step, from page view to purchase, switchable between platforms and attribution views.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="instrument">
+      <div class="idx">04</div>
+      <div>
+        <h3 class="">The life of a creative, in one tracker</h3>
+        <p class="">Every creative followed from assignment to performance: who it was briefed to, format, funnel stage, delivery stage and angle, with Meta and Google campaign numbers flowing in through ClickUp and Google Sheets.</p>
+        <div class="shot-row wide">
+          <figure class="shot-wrap"><div class="shot"><img src="images/creative-tracker.png" alt="Creative tracker" onload="this.parentNode.classList.add('has-img')" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='creative-tracker.png'}else{this.remove()}"><span>[Add screenshot here]</span></div><figcaption>Creative tracker for a quick-commerce client, covering platform, format, category, funnel stage and angle.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="instrument">
+      <div class="idx">05</div>
+      <div>
+        <h3 class="">Automated reporting, in the client inbox</h3>
+        <p class="">A daily performance email that goes out on its own: budget used, revenue against target, ROI against plan and month-to-date pace, with no manual pull.</p>
+        <div class="shot-row wide">
+          <figure class="shot-wrap"><div class="shot"><img src="images/automated-email-report.jpeg" alt="Automated email report" onload="this.parentNode.classList.add('has-img')" onerror="if(!this.dataset.f){this.dataset.f=1;this.src='automated-email-report.jpeg'}else{this.remove()}"><span>[Add screenshot here]</span></div><figcaption>Daily client report showing targets, spend, revenue, ROI and month-to-date pace.</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="instrument">
+      <div class="idx">06</div>
+      <div>
+        <h3 class="fill">[Attribution build title]</h3>
+        <p class="fill">[One or two sentences on the attribution view you built and what decision it changed.]</p>
+        <div class="shot-row wide">
+          <figure class="shot-wrap"><div class="shot"><span>[Add attribution screenshot here]</span></div><figcaption class="fill">[Caption: what this shows]</figcaption></figure>
+        </div>
+      </div>
+    </div>
+    <div class="instrument">
+      <div class="idx">07</div>
+      <div>
+        <h3 class="fill">[Retention build title]</h3>
+        <p class="fill">[One or two sentences on the retention view or flow and what it moved.]</p>
+        <div class="shot-row wide">
+          <figure class="shot-wrap"><div class="shot"><span>[Add retention screenshot here]</span></div><figcaption class="fill">[Caption: what this shows]</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">// TESTIMONIAL</div>
+    <div class="testimonial">
+      <p class="quote fill">"[Add a real quote from a manager, client, or colleague here once you have one.]"</p>
+      <p class="attribution fill">[NAME / ROLE, COMPANY · RELATIONSHIP]</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="eyebrow">// CONTACT</div>
+    <h2 class="section-title">Not just running the ads.</h2>
+    <p class="section-sub">Open to full-time growth marketing roles and consulting engagements, where the work is building the loop and the model underneath it, not just reporting the numbers that came out.</p>
+  </section>
+
+  <footer>
+    <div>Mumbai, India</div>
+    <div>snehal.ppawar5@gmail.com  ·  +91 9987495615  ·  <a href="https://www.linkedin.com/in/snehal-pawar-performance-marketer/" target="_blank">linkedin.com/in/snehal-pawar-performance-marketer</a></div>
+  </footer>
+
+</main>
+
+</body>
+</html>
